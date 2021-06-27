@@ -1,24 +1,9 @@
 // Program based on following : https://www.youtube.com/watch?v=zaiE08EWrO0
 // OR https://www.youtube.com/watch?v=5u3p1NDjw60
-/*
-import 'package:flutter/material.dart';
-import 'package:sknock3/src/app.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(App());
-}
-*/
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +23,9 @@ class _MyAppState extends State<MyApp> {
   TextEditingController sampledata1 = new TextEditingController();
 
   TextEditingController sampledata2 = new TextEditingController();
-
+// void getMessages() {
+//   final  messages = await
+// }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +63,21 @@ class _MyAppState extends State<MyApp> {
                   FirebaseFirestore.instance.collection("test").add(data);
                 },
                 child: Text("Submit"),
-              )
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  DocumentSnapshot variable = await FirebaseFirestore.instance
+                      .collection('test')
+                      .doc('BsZe6YmjYjsWTbCLtgP8')
+                      .get();
+                  print(variable['field1']);
+                  print(variable['field2']);
+                },
+                child: Text("Get Data"),
+              ),
             ],
           ),
         ),
