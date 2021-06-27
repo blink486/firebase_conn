@@ -1,6 +1,8 @@
-// Program based on following : https://www.youtube.com/watch?v=zaiE08EWrO0
-// OR https://www.youtube.com/watch?v=5u3p1NDjw60
+// Program based on following :
+// Store:  https://www.youtube.com/watch?v=5u3p1NDjw60
+// get https://www.youtube.com/watch?v=QshpV3gh708
 
+import 'package:firebase_conn/alldata.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +79,18 @@ class _MyAppState extends State<MyApp> {
                   print(variable['field2']);
                 },
                 child: Text("Get Data"),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => alldata()));
+                },
+                child: Text("Get All Data"),
               ),
             ],
           ),
