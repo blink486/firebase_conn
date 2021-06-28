@@ -1,3 +1,5 @@
+//   Script from:  Mins 7:35 @  https://www.youtube.com/watch?v=QshpV3gh708
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +24,8 @@ class _alldataState extends State<alldata> {
           if (!snapshot.hasData) {
             return Text('No Value');
           }
-          // return ListView(
-          //   children: snapshot.data!.docs.map((Document) async {
-          //     return Text(document['field1']);
-          //   }).toList(),
-          //   // PAUSED 7:35: https://www.youtube.com/watch?v=QshpV3gh708
-          // );
-
+// 'return script below from bottom sections:
+// https://stackoverflow.com/questions/67564852/flutter-firestore-i-have-a-streambuilder-that-returns-a-certain-field-from-al
           return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
