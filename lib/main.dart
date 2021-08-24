@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
               // ),
               TextFormField(
                 controller: sampledata2,
-                decoration: InputDecoration(hintText: "Sample Data 2"),
+                decoration: InputDecoration(hintText: "Sample Data 2 2"),
               ),
               SizedBox(
                 height: 10.0,
