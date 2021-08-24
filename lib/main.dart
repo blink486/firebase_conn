@@ -3,6 +3,7 @@
 // get https://www.youtube.com/watch?v=QshpV3gh708
 
 import 'package:firebase_conn/alldata.dart';
+import 'package:firebase_conn/screens/adddetails.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("My App"),
       ),
@@ -39,13 +41,15 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: [
-              TextFormField(
-                controller: sampledata1,
-                decoration: InputDecoration(hintText: "sample Data 1"),
+              Expanded(
+                child: TextFormField(
+                  controller: sampledata1,
+                  decoration: InputDecoration(hintText: "sample Data 1"),
+                ),
               ),
-              SizedBox(
-                height: 10.0,
-              ),
+              // SizedBox(
+              //   height: 10.0,
+              // ),
               TextFormField(
                 controller: sampledata2,
                 decoration: InputDecoration(hintText: "Sample Data 22"),
@@ -78,7 +82,7 @@ class _MyAppState extends State<MyApp> {
                   print(variable['field1']);
                   print(variable['field2']);
                 },
-                child: Text("Get Data"),
+                child: Text("Get Your Data"),
               ),
               TextButton(
                 style: TextButton.styleFrom(
@@ -90,7 +94,19 @@ class _MyAppState extends State<MyApp> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => alldata()));
                 },
-                child: Text("Get All Data"),
+                child: Text("Add Details"),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => AddDetails()));
+                },
+                child: Text("Add Your Data"),
               ),
             ],
           ),
@@ -99,18 +115,26 @@ class _MyAppState extends State<MyApp> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.teal),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
+              icon: Icon(Icons.person),
+              label: 'Profile',
+              backgroundColor: Colors.cyan),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+            backgroundColor: Colors.lightBlue,
           ),
         ],
+        // type: BottomNavigationBarType.shifting,
+        // currentIndex: _selectedIndex,
+        // selectedItemColor: Colors.white,
+        // unselectedItemColor: Colors.grey,
+        // iconSize: 40,
+        // onTap: _onItemTap,
+        // elevation: 5
       ),
     );
   }
