@@ -18,6 +18,8 @@ class _AddDetailsState extends State<AddDetails> {
   TextEditingController business_desc = new TextEditingController();
   TextEditingController service_radius = new TextEditingController();
 
+  get firestore => null;
+
   @override
   Widget build(BuildContext context) {
     return
@@ -111,6 +113,32 @@ class _AddDetailsState extends State<AddDetails> {
                     print(variable['field3']);
                   },
                   child: Text("Get Data"),
+                ),
+
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.red, // foreground
+                  ),
+                  onPressed: () async {
+                    FirebaseFirestore.instance
+                        .collection("new_biz_add")
+                        .where("f01name", isEqualTo: "Norman")
+                        .get()
+                        .then((querySnapshot) {
+                      querySnapshot.docs.forEach((result) {
+                        // print(result.data());
+                        print(result['f01name']);
+                        print(result['f02surname']);
+                        print(result['f03postcode']);
+                        print(result['f04business_name']);
+                        print(result['f05business_desc']);
+                        print(result['f06service_radius']);
+
+                        // print(result['field3']);
+                      });
+                    });
+                  },
+                  child: Text("Find Norman Search Data"),
                 ),
                 //             TextButton(
                 //               style: TextButton.styleFrom(
