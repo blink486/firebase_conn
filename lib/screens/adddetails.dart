@@ -20,8 +20,12 @@ class _AddDetailsState extends State<AddDetails> {
 
   get firestore => null;
 
+  get searchController => null;
+
   @override
   Widget build(BuildContext context) {
+    // TextEditingController searchController2;
+    var searchController2 = searchController;
     return
         // SingleChildScrollView(
         //   child:
@@ -97,7 +101,6 @@ class _AddDetailsState extends State<AddDetails> {
                   },
                   child: Text("Submit"),
                 ),
-
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.red, // foreground
@@ -114,7 +117,22 @@ class _AddDetailsState extends State<AddDetails> {
                   },
                   child: Text("Get Data"),
                 ),
-
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.red, // foreground
+                  ),
+                  onPressed: () async {
+                    var result = await FirebaseFirestore.instance
+                        .collection('new_biz_add')
+                        .where('f01name', isEqualTo: "Bill")
+                        // .doc('7668IAEwXzIZ56arbn70')
+                        .get();
+                    result.docs.forEach((element) {
+                      print(element.data()['f01name']);
+                    });
+                  },
+                  child: Text("Get Bob Data"),
+                ),
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.red, // foreground
@@ -122,7 +140,7 @@ class _AddDetailsState extends State<AddDetails> {
                   onPressed: () async {
                     FirebaseFirestore.instance
                         .collection("new_biz_add")
-                        .where("f01name", isEqualTo: "Norman")
+                        .where("f01name", isEqualTo: "Bob")
                         .get()
                         .then((querySnapshot) {
                       querySnapshot.docs.forEach((result) {
@@ -133,35 +151,13 @@ class _AddDetailsState extends State<AddDetails> {
                         print(result['f04business_name']);
                         print(result['f05business_desc']);
                         print(result['f06service_radius']);
-
-                        // print(result['field3']);
+                        print(result['f07email']);
+                        // print(result.data());
                       });
                     });
                   },
-                  child: Text("Find Norman Search Data"),
+                  child: Text("Find named Norman Search Data"),
                 ),
-                //             TextButton(
-                //               style: TextButton.styleFrom(
-                //                 primary: Colors.red, // foreground
-                //               ),
-                //               onPressed: () async {
-                //                 QuerySnapshot snap = await
-                //   FirebaseFirestore.instance.collection('collection').get();
-
-                //   print(document.documentID);
-                // });
-
-                // QuerySnapshot variable = await FirebaseFirestore.instance
-                //     .collection('newc')
-                //     .where('field1', isGreaterThan: 1)
-                //     .get();
-
-                // print(variable["field1"]);
-                // print(variable['field2']);
-                // print(variable['field3']);
-                //   },
-                //   child: Text("GetSearch Data"),
-                // ),
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.red, // foreground
@@ -173,6 +169,30 @@ class _AddDetailsState extends State<AddDetails> {
                             builder: (BuildContext context) => GetData()));
                   },
                   child: Text("Get All Your Datas"),
+                ),
+                TextField(
+                  style: TextStyle(color: Colors.blue),
+                  decoration: InputDecoration(
+                      hintText: 'search Courses',
+                      hintStyle: TextStyle(color: Colors.redAccent)),
+                  controller: searchController2,
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.red, // foreground
+                  ),
+                  onPressed: () async {
+                    var result = await FirebaseFirestore.instance
+                        .collection('new_biz_add')
+                        .where('f01name', isEqualTo: searchController2)
+                        // .doc('7668IAEwXzIZ56arbn70')
+                        .get();
+                    result.docs.forEach((element) {
+                      print(element.data()['f01name']);
+                      print(searchController2);
+                    });
+                  },
+                  child: Text("Get Search Data"),
                 ),
               ],
             ),

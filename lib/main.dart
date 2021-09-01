@@ -7,6 +7,7 @@ import 'package:firebase_conn/screens/adddetails.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_conn/screens/search.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -107,6 +108,18 @@ class _MyAppState extends State<MyApp> {
                           builder: (BuildContext context) => AddDetails()));
                 },
                 child: Text("Add Your Data"),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Search()));
+                },
+                child: Text("Search For Data"),
               ),
             ],
           ),
