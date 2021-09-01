@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/getdocs.dart';
 import 'package:flutter/material.dart';
 
+import 'anothersearch.dart';
+
+// import 'anothersearch.dart';
+
 class AddDetails extends StatefulWidget {
   const AddDetails({Key? key}) : super(key: key);
 
@@ -99,7 +103,7 @@ class _AddDetailsState extends State<AddDetails> {
                         .collection("new_biz_add")
                         .add(data);
                   },
-                  child: Text("Submit"),
+                  child: Text("Submit2"),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
@@ -168,7 +172,19 @@ class _AddDetailsState extends State<AddDetails> {
                         MaterialPageRoute(
                             builder: (BuildContext context) => GetData()));
                   },
-                  child: Text("Get All Your Datas"),
+                  child: Text("Get All Your Datas s"),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.red, // foreground
+                  ),
+                  onPressed: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => MyCustomForm()));
+                  },
+                  child: Text("Get All Your floating Search Butt on"),
                 ),
                 TextField(
                   style: TextStyle(color: Colors.blue),
@@ -189,7 +205,7 @@ class _AddDetailsState extends State<AddDetails> {
                         .get();
                     result.docs.forEach((element) {
                       print(element.data()['f01name']);
-                      print(searchController2);
+                      // print(searchController2);
                     });
                   },
                   child: Text("Get Search Data"),
