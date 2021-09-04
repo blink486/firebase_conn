@@ -1,4 +1,3 @@
-import 'package:firebase_conn/screens/resultclass.dart';
 import 'package:flutter/material.dart';
 
 import 'getdocs.dart';
@@ -43,7 +42,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Retrieve Text Inputs'),
+        title: const Text('Retrieve Text Input'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -65,14 +64,11 @@ class _MyCustomFormState extends State<MyCustomForm> {
           //     );
           //   },
           // );
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      GetDataX(searchstr: 'Bill')));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => GetData()));
         },
         tooltip: 'Show me the value!',
-        child: const Icon(Icons.search),
+        child: const Icon(Icons.text_fields),
       ),
     );
   }

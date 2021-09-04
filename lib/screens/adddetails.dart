@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/getdocs.dart';
+import 'package:firebase_conn/screens/searchsat.dart';
 import 'package:flutter/material.dart';
 
 import 'anothersearch.dart';
@@ -21,6 +22,7 @@ class _AddDetailsState extends State<AddDetails> {
   TextEditingController business_name = new TextEditingController();
   TextEditingController business_desc = new TextEditingController();
   TextEditingController service_radius = new TextEditingController();
+  TextEditingController searchstring = new TextEditingController();
 
   get firestore => null;
 
@@ -79,6 +81,25 @@ class _AddDetailsState extends State<AddDetails> {
                   decoration: InputDecoration(hintText: "service radius"),
                 ),
                 SizedBox(height: 10.09),
+                TextFormField(
+                  controller: searchstring,
+                  decoration: InputDecoration(hintText: "Search String"),
+                ),
+                SizedBox(height: 10.0),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.red, // foreground
+                  ),
+                  onPressed: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => GetDataS(
+                                  searchstr: searchstring.text,
+                                )));
+                  },
+                  child: Text("Pass Search String"),
+                ),
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.red, // foreground
@@ -209,6 +230,30 @@ class _AddDetailsState extends State<AddDetails> {
                     });
                   },
                   child: Text("Get Search Data"),
+                ),
+                Column(
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.flight_land),
+                      title: const Text("Trix's airplane"),
+                      subtitle: const Text('The airplane is only in Act II.'),
+                      // onTap: () => print("Hello"),
+                      onTap: () async {
+                        var result = await FirebaseFirestore.instance
+                            .collection('new_biz_add')
+                            .where('f01name', isEqualTo: searchController2)
+                            // .doc('7668IAEwXzIZ56arbn70')
+                            .get();
+                        result.docs.forEach((element) {
+                          print(element.data()['f01name']);
+                          // print(searchController2);
+                        });
+                      },
+                    ),
+                    Center(
+                      child: Text("Hello"),
+                    )
+                  ],
                 ),
               ],
             ),
