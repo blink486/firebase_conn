@@ -22,8 +22,23 @@ class _GetDataState extends State<GetDataX> {
         title: Text("Get Data"),
       ),
       body: Center(
-        child: Text("Hello"),
-      ),
+          // child: Text(widget.searchstr),
+          child: TextButton(
+        style: TextButton.styleFrom(
+          primary: Colors.red, // foreground
+        ),
+        onPressed: () async {
+          DocumentSnapshot variable = await FirebaseFirestore.instance
+              .collection('new_biz_add')
+              .doc(widget.searchstr)
+              .get();
+
+          print(variable['f07email']);
+          // print(variable[widget.searchstr]);
+          // print(variable['field3']);
+        },
+        child: Text("See Debug Console for output!"),
+      )),
     );
   }
 }
