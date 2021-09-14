@@ -13,8 +13,6 @@ class GetDataX extends StatefulWidget {
 }
 
 class _GetDataState extends State<GetDataX> {
-  // String get searchstr => searchstr;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +31,12 @@ class _GetDataState extends State<GetDataX> {
               .doc(widget.searchstr)
               .get();
 
+          print('Doc Id is: ' + variable.id);
           print(variable['f07email']);
-          // print(variable[widget.searchstr]);
+
           // print(variable['field3']);
         },
-        child: Text("See Debug Console for output!"),
+        child: Text("See Debug Console for outpu t!"),
       )),
     );
   }

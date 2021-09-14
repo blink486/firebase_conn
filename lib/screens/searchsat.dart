@@ -9,6 +9,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/getdocs.dart';
 import 'package:firebase_conn/screens/resultclass.dart';
+import 'package:firebase_conn/screens/searchcard.dart';
 import 'package:flutter/material.dart';
 
 class GetDataS extends StatefulWidget {
@@ -47,7 +48,7 @@ class _GetDataState extends State<GetDataS> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Text('No Value');
+            return Text('No XXXX Value');
           }
 // 'return script below from bottom sections:
 // https://stackoverflow.com/questions/67564852/flutter-firestore-i-have-a-streambuilder-that-returns-a-certain-field-from-al
@@ -60,7 +61,8 @@ class _GetDataState extends State<GetDataS> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => GetDataX(
+                            // GetDataX 11/09/2021
+                            builder: (BuildContext context) => GetDataCard(
                                   searchstr:
                                       snapshot.data!.docs[index].reference.id,
                                   //TO DO: Add Snapshot Item doc id and pass to create Card in next screen
