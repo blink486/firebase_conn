@@ -98,7 +98,7 @@ class _AddDetailsState extends State<AddDetails> {
                                   searchstr: searchstring.text,
                                 )));
                   },
-                  child: Text("Pass Search String"),
+                  child: Text("Pass Search String Path->2"),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(

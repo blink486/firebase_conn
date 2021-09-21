@@ -107,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => AddDetails()));
                 },
-                child: Text("Add Your Data"),
+                child: Text("Add Your Data Path 1"),
               ),
               TextButton(
                 style: TextButton.styleFrom(

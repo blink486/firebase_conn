@@ -13,29 +13,30 @@ import 'package:firebase_conn/screens/searchcard.dart';
 import 'package:firebase_conn/screens/searchcard2.dart';
 import 'package:flutter/material.dart';
 
-class GetDataS extends StatefulWidget {
-  const GetDataS({Key? key, required this.searchstr}) : super(key: key);
-  final String searchstr;
+class GetDataJobs extends StatefulWidget {
+  const GetDataJobs({Key? key, required this.searchstrJb}) : super(key: key);
+  final String searchstrJb;
 
   @override
-  _GetDataState createState() => _GetDataState();
+  _GetDataJobstate createState() => _GetDataJobstate();
 }
 
-// class _GetDataState extends State<GetDataS> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Get Data"),
-//       ),
-//       body: Center(
-//         child: Text(widget.searchstr),
-//       ),
-//     );
-//   }
-// }
+class _GetDataJobstate extends State<GetDataJobs> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Get Data"),
+      ),
+      body: Center(
+        child: Text(widget.searchstrJb),
+      ),
+    );
+  }
+}
 
-class _GetDataState extends State<GetDataS> {
+/*
+class _GetDataJobstate extends State<GetDataJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,7 @@ class _GetDataState extends State<GetDataS> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('new_biz_add')
-            .where('f01name', isEqualTo: widget.searchstr)
+            .where('documentID', isEqualTo: widget.searchstrJb)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -85,3 +86,4 @@ class _GetDataState extends State<GetDataS> {
     );
   }
 }
+*/
