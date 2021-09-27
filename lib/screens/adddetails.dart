@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/getdocs.dart';
 import 'package:firebase_conn/screens/searchsat.dart';
+
 import 'package:flutter/material.dart';
 
 import 'anothersearch.dart';
@@ -62,6 +63,7 @@ class _AddDetailsState extends State<AddDetails> {
                 ),
                 SizedBox(height: 10.09),
                 TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: email,
                   decoration: InputDecoration(hintText: "email"),
                 ),
@@ -124,7 +126,7 @@ class _AddDetailsState extends State<AddDetails> {
                         .collection("new_biz_add")
                         .add(data);
                   },
-                  child: Text("Submit2"),
+                  child: Text("Submit New Business User"),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(

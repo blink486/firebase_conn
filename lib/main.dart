@@ -4,6 +4,9 @@
 
 import 'package:firebase_conn/alldata.dart';
 import 'package:firebase_conn/screens/adddetails.dart';
+import 'package:firebase_conn/screens/login.dart';
+import 'package:firebase_conn/screens/register_business.dart';
+import 'package:firebase_conn/screens/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +38,10 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("My App"),
+        title: Text("Second Knock v.01"),
       ),
       body: Container(
-        padding: EdgeInsets.all(40.0),
+        padding: EdgeInsets.all(20.0),
         child: Center(
           child: Column(
             children: [
@@ -70,6 +73,109 @@ class _MyAppState extends State<MyApp> {
                   FirebaseFirestore.instance.collection("test").add(data);
                 },
                 child: Text("Submit"),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    color: Colors.teal,
+                    height: 50,
+                    child: Center(
+                      child: Text('Center 2 Txt'),
+                    ),
+                  ),
+                  Text(
+                    "Plain Goodbye",
+                    textAlign: TextAlign.center,
+                  ),
+                  Flexible(
+                    child: InkWell(
+                      child: Container(
+                        color: Colors.orangeAccent,
+                        // height: 50,
+                        // child: Center(
+                        // child: Image.network(
+                        //   // 'https://picsum.photos/250?image=10'),
+                        //   "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg",
+                        height: 50,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        // ),
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        print("Inkwell Tap HA03 Login");
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    // AddBusDetails()));
+                                    LogIn()));
+                      },
+                    ),
+                  ),
+                  Flexible(
+                    child: InkWell(
+                      child: Container(
+                        color: Colors.blueAccent,
+                        // height: 50,
+                        // child: Center(
+                        // child: Image.network(
+                        //   // 'https://picsum.photos/250?image=10'),
+                        //   "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg",
+                        height: 50,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        // ),
+                        child: Center(
+                          child: Text(
+                            "Create Account and Register",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        print("Inkwell Tap HA03");
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    // AddBusDetails()));
+                                    SignUp()));
+                      },
+                    ),
+                  ),
+                  /*
+                  Expanded(
+                    child: Container(
+                      color: Colors.grey,
+                      height: 50,
+                      child: Center(
+                        child: Image.network(
+                            "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg"),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      height: 50,
+                      child: FittedBox(
+                        child: Image.network(
+                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+                        //    fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),*/
+                ],
               ),
               TextButton(
                 style: TextButton.styleFrom(

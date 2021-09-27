@@ -21,21 +21,20 @@ class GetDataJobs extends StatefulWidget {
   _GetDataJobstate createState() => _GetDataJobstate();
 }
 
-class _GetDataJobstate extends State<GetDataJobs> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Get Data"),
-      ),
-      body: Center(
-        child: Text(widget.searchstrJb),
-      ),
-    );
-  }
-}
+// class _GetDataJobstate extends State<GetDataJobs> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Get Data"),
+//       ),
+//       body: Center(
+//         child: Text(widget.searchstrJb),
+//       ),
+//     );
+//   }
+// }
 
-/*
 class _GetDataJobstate extends State<GetDataJobs> {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class _GetDataJobstate extends State<GetDataJobs> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('new_biz_add')
-            .where('documentID', isEqualTo: widget.searchstrJb)
+            .where('f04business_name', isEqualTo: widget.searchstrJb)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -86,4 +85,3 @@ class _GetDataJobstate extends State<GetDataJobs> {
     );
   }
 }
-*/

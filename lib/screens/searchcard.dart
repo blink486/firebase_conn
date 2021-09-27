@@ -358,9 +358,10 @@ class _GetDataState extends State<GetDataCard> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => GetDataJobs(
-                              searchstrJb: result.data()!['f01name'])));
+                              searchstrJb:
+                                  result.data()!['f04business_name'])));
                 },
-                child: Text("Get Search Data 4"),
+                child: Text("View Jobs by this Business ->5 "),
               ),
             ),
           ],
