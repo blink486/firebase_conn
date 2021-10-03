@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/searchsat.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,28 +6,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // import 'anothersearch.dart';
 
-class AddBusDetails extends StatefulWidget {
-  const AddBusDetails({Key? key}) : super(key: key);
+class AddToFolio extends StatefulWidget {
+  const AddToFolio({Key? key, required this.businessId}) : super(key: key);
+  final String businessId;
 
   @override
-  _AddBusDetailsState createState() => _AddBusDetailsState();
+  _AddToFolioState createState() => _AddToFolioState();
 }
 
-class _AddBusDetailsState extends State<AddBusDetails> {
-  TextEditingController name = new TextEditingController();
-  TextEditingController surname = new TextEditingController();
-  TextEditingController postcode = new TextEditingController();
-  TextEditingController email = new TextEditingController();
-
-  TextEditingController business_name = new TextEditingController();
-  TextEditingController business_desc = new TextEditingController();
-  TextEditingController service_radius = new TextEditingController();
+class _AddToFolioState extends State<AddToFolio> {
+  TextEditingController projectName = new TextEditingController();
+  TextEditingController projectDesc = new TextEditingController();
+  TextEditingController projectPostcode = new TextEditingController();
+  TextEditingController projectCompletionDate = new TextEditingController();
+  TextEditingController projectLink = new TextEditingController();
+  TextEditingController projectImages = new TextEditingController();
   TextEditingController searchstring = new TextEditingController();
-  TextEditingController password = new TextEditingController();
-
-  get firestore => null;
-
-  get searchController => null;
 
   // final _auth = FirebaseAuth.instance;
   // FirebaseUser loggedInUser;
@@ -76,7 +68,7 @@ class _AddBusDetailsState extends State<AddBusDetails> {
         Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text("Register"),
+        title: Text("Add Project $currUser2"),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -85,46 +77,41 @@ class _AddBusDetailsState extends State<AddBusDetails> {
             child: Column(
               children: [
                 TextFormField(
-                  controller: name,
+                  controller: projectName,
                   decoration: InputDecoration(hintText: "name"),
                 ),
                 SizedBox(height: 10.0),
                 TextFormField(
-                  controller: surname,
-                  decoration: InputDecoration(hintText: "surname"),
+                  controller: projectDesc,
+                  decoration: InputDecoration(hintText: "projectDesc"),
                 ),
                 SizedBox(height: 10.0),
                 TextFormField(
-                  controller: postcode,
-                  decoration: InputDecoration(hintText: "postcode"),
+                  controller: projectPostcode,
+                  decoration: InputDecoration(hintText: "projectPostcode"),
                 ),
                 SizedBox(height: 10.09),
                 TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: email,
-                  decoration: InputDecoration(hintText: "email"),
+                  // DEV NOTES : Add date picker see: https://stackoverflow.com/questions/54127847/flutter-how-to-display-datepicker-when-textformfield-is-clicked
+                  // onTap: () {
+                  //   FocusScope.of(context).requestFocus(new FocusNode());
+                  // },
+                  controller: projectCompletionDate,
+                  decoration:
+                      InputDecoration(hintText: "projectCompletionDate"),
                 ),
                 SizedBox(height: 10.09),
                 TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  obscureText: true,
-                  controller: password,
-                  decoration: InputDecoration(hintText: "password"),
+                  // keyboardType: TextInputType.emailAddress,
+                  // obscureText: true,
+                  controller: projectLink,
+                  decoration: InputDecoration(hintText: "projectLink"),
                 ),
                 SizedBox(height: 10.09),
                 TextFormField(
-                  controller: business_name,
-                  decoration: InputDecoration(hintText: "business name"),
-                ),
-                SizedBox(height: 10.09),
-                TextFormField(
-                  controller: business_desc,
-                  decoration: InputDecoration(hintText: "business desc"),
-                ),
-                SizedBox(height: 10.09),
-                TextFormField(
-                  controller: service_radius,
-                  decoration: InputDecoration(hintText: "service radius"),
+                  controller: projectImages,
+                  decoration: InputDecoration(
+                      hintText: "USe Image Picker and Link to Images"),
                 ),
                 SizedBox(height: 10.09),
                 TextFormField(
@@ -147,7 +134,7 @@ class _AddBusDetailsState extends State<AddBusDetails> {
                                   searchstr: searchstring.text,
                                 )));
                   },
-                  child: Text("Pass Search String Path->2"),
+                  child: Text("Pass Search String Path-> Logged in BusUser"),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
@@ -155,27 +142,20 @@ class _AddBusDetailsState extends State<AddBusDetails> {
                   ),
                   onPressed: () {
                     Map<String, dynamic> data = {
-                      // "f01name": name.text,
-                      // "f02surname": surname.text,
-                      // "f03postcode": postcode.text,
-                      // "f04business_name": business_name.text,
-                      // "f05business_desc": business_desc.text,
-                      // "f06service_radius": service_radius.text
-
                       "f00user": currUser2,
-                      "f01name": name.text,
-                      "f02surname": surname.text,
-                      "f03postcode": postcode.text,
-                      "f04business_name": business_name.text,
-                      "f05business_desc": business_desc.text,
-                      "f06service_radius": service_radius.text,
-                      "f07email": email.text,
-                      "f08password": password.text
+                      "f01businessId": widget.businessId,
+                      "f02projectName": projectName.text,
+                      "f03projectDesc": projectDesc.text,
+                      "f04projectPostcode": projectPostcode.text,
+                      "f05projectCompletionDate": projectCompletionDate.text,
+                      "f06projectLink": projectLink.text,
+                      "f07projectImages": projectImages.text
                     };
                     // DEV NOTES! 28-09: ADD Check to see if user 'currUser2' already exists Else register
-                    FirebaseFirestore.instance.collection("register").add(data);
+                    FirebaseFirestore.instance.collection("folio").add(data);
+                    Navigator.pop(context);
                   },
-                  child: Text("Submit New Business User"),
+                  child: Text("Submit Project"),
                 ),
               ],
             ),

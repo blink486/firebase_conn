@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_conn/screens/register_business.dart';
+import 'package:firebase_conn/screens/searchcard.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../main.dart';
 import 'emptyscreen.dart';
+import 'logonscreen.dart';
+import 'logonscreenresult.dart';
 
 // import 'anothersearch.dart';
 
@@ -73,13 +76,15 @@ class _LogInState extends State<LogIn> {
                           email: email, password: password);
 
                       if (user != null) {
+                        print('Hello uid: ' + user.user!.uid);
                         print(user);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (BuildContext context) => emptyTab(
-                                // searchstr: searchstring.text,
-                                ),
+                            builder: (BuildContext context) => Logonlanding(
+                              searchstr: user.user!.uid.toString(),
+                              // searchstr: searchstring.text,
+                            ),
                           ),
                         );
                         // Navigator.pushNamed(context, AddBusDetails); // NEED TO LEARN ABOUT NAMED ROUTES

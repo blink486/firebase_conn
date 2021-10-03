@@ -13,7 +13,37 @@ class emptyTab extends StatefulWidget {
 // ignore: camel_case_types
 class _emptyTabState extends State<emptyTab> {
   final _auth = FirebaseAuth.instance;
+  // To extract specific instance details example:
+  // Text(_auth.currentUser!.uid.toString()),
+  // Text(_auth.currentUser!.email.toString()),
 
+  // Get FULL Dataset of User instance:
+  var firebaseUser = FirebaseAuth.instance.currentUser;
+
+  // Object? get currentUser => currentUser.toString();
+  // var name = currentUser!.displayName.toString();
+
+  /// Function to get the currently logged in user
+  void getCurrentUser() {
+    var currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      // User is signed in
+      String cusername = currentUser.uid.toString();
+    } else {
+      // User is not signed in
+    }
+  }
+
+  @override
+  void initState() {
+    getCurrentUser();
+
+    super.initState();
+
+    print("X-Code");
+  }
+
+  FirebaseAuth get newMethod => _auth;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +59,21 @@ class _emptyTabState extends State<emptyTab> {
                 })
           ],
         ),
-        body: Container(
-          child: Text("Hello Empty Screen"),
+        body: Column(
+          children: <Widget>[
+            Text("Hello Empty Screens 4"),
+            Text("Hello Empty Screens 4 {$firebaseUser![f001user]}"),
+            Text("Hello Empty Screens 4 {$getCurrentUser()![f001user]}"),
+            Text(_auth.currentUser!.uid.toString()),
+            Text(_auth.currentUser!.email.toString()),
+          ],
         ));
   }
 }
+
+// ignore: camel_case_types
+// class Nameuser {
+//   var firebaseUser = FirebaseAuth.instance.currentUser;
+//   var nameusr = FirebaseAuth.instance.currentUser!.uid;
+//   return nameusr;
+// }
