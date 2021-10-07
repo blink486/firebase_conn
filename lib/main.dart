@@ -4,6 +4,7 @@
 
 import 'package:firebase_conn/alldata.dart';
 import 'package:firebase_conn/screens/adddetails.dart';
+import 'package:firebase_conn/screens/home.dart';
 import 'package:firebase_conn/screens/login.dart';
 import 'package:firebase_conn/screens/register_business.dart';
 import 'package:firebase_conn/screens/signup.dart';
@@ -82,11 +83,11 @@ class _MyAppState extends State<MyApp> {
                     color: Colors.teal,
                     height: 50,
                     child: Center(
-                      child: Text('Center 2 Txt'),
+                      child: Text('Business Service Search'),
                     ),
                   ),
                   Text(
-                    "Plain Goodbye",
+                    "SKills Search",
                     textAlign: TextAlign.center,
                   ),
                   Flexible(
@@ -226,6 +227,18 @@ class _MyAppState extends State<MyApp> {
                           builder: (BuildContext context) => Search()));
                 },
                 child: Text("Search For Data"),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => HomeScreen()));
+                },
+                child: Text("Home Screen ->>"),
               ),
             ],
           ),

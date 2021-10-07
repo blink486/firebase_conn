@@ -8,10 +8,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_conn/screens/getdocs.dart';
-import 'package:firebase_conn/screens/resultclass.dart';
-import 'package:firebase_conn/screens/searchcard.dart';
-import 'package:firebase_conn/screens/searchcard2.dart';
 import 'package:flutter/material.dart';
 
 import 'logonhome.dart';
@@ -76,6 +72,14 @@ class _Logonlandingtate extends State<Logonlanding> {
                                 )));
                   },
                   child: ListTile(
+                    leading: SizedBox(
+                      height: 10,
+                      width: 20,
+                      child: Icon(
+                        Icons.safety_divider,
+                        size: 50,
+                      ),
+                    ),
                     title: Text(
                       "Co. Name : " + course['f04business_name'],
                     ),

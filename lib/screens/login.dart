@@ -1,12 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_conn/screens/register_business.dart';
-import 'package:firebase_conn/screens/searchcard.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../main.dart';
-import 'emptyscreen.dart';
-import 'logonscreen.dart';
 import 'logonscreenresult.dart';
 
 // import 'anothersearch.dart';

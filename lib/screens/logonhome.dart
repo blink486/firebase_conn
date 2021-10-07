@@ -3,7 +3,6 @@
 // import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_conn/screens/searchcard2.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -97,7 +96,24 @@ class _GetDataState extends State<UserBusinessHome> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.teal,
       appBar: AppBar(
-        title: Text("Get Data" + widget.searchstr),
+        title: Text("Get Data" /*+ widget.searchstr*/),
+        actions: <Widget>[
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        // GetDataX 11/09/2021
+                        builder: (BuildContext context) => MyApp(
+
+                            //TO DO: Add Snapshot Item doc id and pass to create Card in next screen
+                            )));
+              },
+              child: Text(
+                "HOME",
+                style: TextStyle(color: Colors.amber),
+              )),
+        ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -271,22 +287,6 @@ class _GetDataState extends State<UserBusinessHome> {
               SizedBox(
                 height: 20,
               ),
-
-              // Container(
-              //   height: 40,
-              //   width: 300,
-              //   color: Colors.teal,
-              //   child: Text(getDoc('f04business_name').toString()),
-              //   // child: Text(getData().toString()),
-
-              //   // child: Text(getDoc(widget.searchstr).toString()),
-              //   // child: Text(getDoc.toString()),
-              //   // "${snapshot.data!['f04business_name']}",
-              //   // style: TextStyle(
-              //   //     color: Colors.amberAccent,
-              //   //     fontSize: 18,
-              //   //     fontWeight: FontWeight.bold),
-              // ),
               Container(
                 height: 20,
                 width: 300,
@@ -374,39 +374,55 @@ class _GetDataState extends State<UserBusinessHome> {
                       color: Colors.white, fontStyle: FontStyle.italic),
                 )),
               ),
-              Container(
-                height: 100.0,
-                width: 300,
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: null,
-                      child: Text("Facebook"),
+              // Container(
+              //   child:
+              Row(children: <Widget>[
+                Expanded(
+                  child: SizedBox(
+                    height: 500,
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('folio')
+                          .where('f01businessId', isEqualTo: widget.searchstr)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          // return Text('No XXXX Value');
+                          print("curr uaer = No Projects Listed");
+                          return new CircularProgressIndicator();
+                        }
+                        return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot projList =
+                                  snapshot.data!.docs[index];
+                              return ListTile(
+                                tileColor: Colors.amber,
+                                leading: SizedBox(
+                                  height: 10,
+                                  width: 20,
+                                  child: Icon(
+                                    Icons.safety_divider,
+                                    size: 50,
+                                  ),
+                                ),
+                                title: Text(
+                                  "Project : " + projList['f02projectName'],
+                                ),
+                                subtitle: Text("Service : " +
+                                    projList['f03projectDesc'] +
+                                    "  "),
+                                horizontalTitleGap: 48,
+                              );
+                            });
+                      },
                     ),
-                    Padding(padding: EdgeInsets.all(5.00)),
-                    TextButton(
-                      onPressed: null,
-                      child: Text("Google"),
-                    ),
-                    Padding(padding: EdgeInsets.all(5.00)),
-                    TextButton(
-                      onPressed: null,
-                      child: Text("Amazon"),
-                    ),
-                    Padding(padding: EdgeInsets.all(5.00)),
-                    TextButton(
-                      onPressed: null,
-                      child: Text("Microsoft"),
-                    ),
-                    Padding(padding: EdgeInsets.all(5.00)),
-                    TextButton(
-                      onPressed: null,
-                      child: Text("Nextflix"),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ]),
+
               FloatingActionButton(
                 child: Icon(
                   Icons.add,

@@ -3,9 +3,7 @@
 // import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_conn/alldata.dart';
 import 'package:firebase_conn/screens/searchcard2.dart';
-import 'package:firebase_conn/screens/searchsat.dart';
 import 'package:flutter/material.dart';
 
 class GetDataCard extends StatefulWidget {

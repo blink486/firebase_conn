@@ -6,6 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'logonhome.dart';
+import 'logonscreenresult.dart';
+
 // import 'anothersearch.dart';
 
 class AddBusDetails extends StatefulWidget {
@@ -174,6 +177,22 @@ class _AddBusDetailsState extends State<AddBusDetails> {
                     };
                     // DEV NOTES! 28-09: ADD Check to see if user 'currUser2' already exists Else register
                     FirebaseFirestore.instance.collection("register").add(data);
+                    //                 Navigator.push(
+                    // context,
+                    // MaterialPageRoute(
+                    //     builder: (BuildContext context) => GetDataS(
+                    //           searchstr: searchstring.text,
+                    //         )));
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            // GetDataX 11/09/2021
+                            builder: (BuildContext context) => Logonlanding(
+                                searchstr: currUser2
+                                // snapshot.data!.docs[index].reference.id,
+                                //TO DO: Add Snapshot Item doc id and pass to create Card in next screen
+                                )));
                   },
                   child: Text("Submit New Business User"),
                 ),

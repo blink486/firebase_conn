@@ -7,10 +7,7 @@
 // import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_conn/screens/getdocs.dart';
-import 'package:firebase_conn/screens/resultclass.dart';
 import 'package:firebase_conn/screens/searchcard.dart';
-import 'package:firebase_conn/screens/searchcard2.dart';
 import 'package:flutter/material.dart';
 
 class GetDataS extends StatefulWidget {
