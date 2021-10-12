@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import 'folio.dart';
+import 'homenav.dart';
 
 class UserBusinessHome extends StatefulWidget {
   final String searchstr;
@@ -104,7 +105,7 @@ class _GetDataState extends State<UserBusinessHome> {
                     context,
                     MaterialPageRoute(
                         // GetDataX 11/09/2021
-                        builder: (BuildContext context) => MyApp(
+                        builder: (BuildContext context) => HomeNav(
 
                             //TO DO: Add Snapshot Item doc id and pass to create Card in next screen
                             )));

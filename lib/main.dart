@@ -5,6 +5,7 @@
 import 'package:firebase_conn/alldata.dart';
 import 'package:firebase_conn/screens/adddetails.dart';
 import 'package:firebase_conn/screens/home.dart';
+import 'package:firebase_conn/screens/homenav.dart';
 import 'package:firebase_conn/screens/login.dart';
 import 'package:firebase_conn/screens/register_business.dart';
 import 'package:firebase_conn/screens/signup.dart';
@@ -18,7 +19,8 @@ void main() async {
   await Firebase.initializeApp();
 
   runApp(MaterialApp(
-    home: MyApp(),
+    // home: MyApp(),
+    home: HomeNav(),
   ));
 }
 
@@ -239,6 +241,18 @@ class _MyAppState extends State<MyApp> {
                           builder: (BuildContext context) => HomeScreen()));
                 },
                 child: Text("Home Screen ->>"),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Colors.red, // foreground
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => HomeNav()));
+                },
+                child: Text("2nd Home ->>"),
               ),
             ],
           ),
